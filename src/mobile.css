@@ -1,0 +1,138 @@
+@media screen and (max-width: 720px){
+	.pc_none{
+		display: flex !important;
+	}
+	.stok{
+		background-color: #e70000 ;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    font-size: 25pt;
+    cursor: pointer;
+    display: flex;
+	}
+	.mobile_none{
+		display: none !important;
+		transition-delay: .5s;
+	}
+	.sub_nav{
+		/*
+		margin-top: 439px;
+		margin-left: -195px;
+		
+		margin-top: 375px;
+    margin-left: -170px;
+    */
+    margin-top: 455px !important;
+    margin-left: -200px !important;
+	}
+	.room_swim_but{
+		text-transform: uppercase;
+		padding: 1px;
+		right: 0px;
+		font-size: 10pt;
+		top: 40%;
+		display: flex;
+		position: fixed;	
+		width: 15px;
+		writing-mode: vertical-lr; 
+		text-orientation: upright; 
+		background-color: #f6a617;
+		user-select: none;
+		border-radius: 5px 0 0 5px;
+		z-index: 26;
+	}
+	.room_cont1{
+		font-family: Georgia, serif;
+		
+		margin: auto;
+		padding: 5px;
+		display: flex;
+		min-height: 50px;
+		min-width: 170px;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		border-radius: 10px;
+		background-color: #f6a617;
+		cursor: pointer;
+		transition-duration: .5s;
+		max-width: 400px;
+		margin: 0;
+	}
+	.sircle_final_level{
+		width: 50px !important;
+		aspect-ratio: 1 / 1;
+	}
+	.sircle_middle_level{
+		width: 30px !important;
+		aspect-ratio: 1 / 1;
+	}
+	.sircle_start_level{
+		margin: 2px 0;
+		width: 20px !important;
+		aspect-ratio: 1 / 1;
+	}
+	.content_wrapper{
+		flex-wrap: wrap;
+	}
+	
+}
+@media screen and (max-width:765px){
+	.style_col{
+    flex-wrap: wrap;
+}
+.profWind{
+	height: auto !important;
+}
+}
+@media screen and (max-width:455px){
+	.foot_el_el2{
+		display: flex;
+		justify-content: flex-start;
+	}
+}
+@media screen and (max-width:390px){
+	.stats_row_items {
+		flex-wrap: wrap !important;
+	}
+}
+@media screen and (max-width:335px){
+	#deposit{
+		display: none;
+	}
+	.sub_nav{
+		/*
+		margin-top: 505px;
+		margin-left: -195px;
+		
+		margin-top: 440px;
+    margin-left: -170px;*/
+    margin-top: 525px !important;
+		margin-left: -200px !important;
+	}
+	#income{
+		display: flex;
+	}
+}
+@media screen and (max-width:270px){
+	.sircle_final_level{
+		width: 35px !important;
+		aspect-ratio: 1 / 1;
+	}
+	.sircle_middle_level{
+		width: 25px !important;
+		aspect-ratio: 1 / 1;
+	}
+	.sircle_start_level{
+		margin: 2px 0;
+		width: 20px !important;
+		aspect-ratio: 1 / 1;
+	}
+}
