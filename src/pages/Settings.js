@@ -8,7 +8,6 @@ import { COMMON_ROUTE, OHTERS_ROUTE, SECURITY_ROUTE } from '../utils/const';
 import WorkRow from '../components/settings/WorkRow';
 import SetMenu from '../components/settings/SetMenu';
 import { changeProfCommon, changeProfOther, changeProfSecurity } from '../http/userAPI';
-import OtherEl from '../components/settings/OtherEl';
 import SwimMes from '../components/SwimMes';
 
 const  Settings = observer(() => {
@@ -21,8 +20,8 @@ const  Settings = observer(() => {
   const [login, setLogin] = useState(user.User.login)
   const [email, setEmail] = useState(user.User.email)
   const [refCode, setRefCode] = useState(user.User.code)
-  const [name, setName] = useState(user.User.usname)
-  const [surName, setSurName] = useState(user.User.ussurname)
+  const [name, setName] = useState(user.User.usname == 'null' ? '' : user.User.usname)
+  const [surName, setSurName] = useState(user.User.ussurname == 'null' ? '' : user.User.ussurname)
 
   const commonClick = async () => {
     let data;
@@ -174,7 +173,7 @@ const  Settings = observer(() => {
                       labelValue={'Имя'} inputPlaceholder={'Введите имя'} 
                       labelValue1={'Фамилия'} inputPlaceholder1={'Введите фамилию'}
                      />
-                    <WorkRow func = {e => setRefCode(e.target.value)}  labelValue={'Ваш пригласительный код'} val={refCode} />
+                    <WorkRow func = {e => setRefCode(e.target.value)}  labelValue={'Ваш пригласительный код'} val={refCode} myref={user.User.code}/>
                     <SetBut onClick={commonClick} className='SetBut'>Сохранить данные</SetBut>
                   </ContWork>
                   }

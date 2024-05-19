@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import React, { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Context } from '../..'
 import { httpPostJoin } from '../../http/rooms'
@@ -25,7 +25,18 @@ const WrapButtonsMob = observer((props) => {
             user.useLeader = data.useLeader
             navigate(ROOMS_ROUTE)
         }
+        
         const newPopup = { id: Date.now(), data };
+        setPopups(prevPopups => [...prevPopups, newPopup]);
+
+        // Удаляем всплывающее окно через 5 секунд
+        setTimeout(() => {
+        setPopups(prevPopups => prevPopups.filter(popup => popup.id !== newPopup.id));
+        }, 5000);
+    }
+    const PassF = () => {
+        const data = ['Вы не вошли в аккаунт'];
+        const newPopup = { id: Date.now(), data};
         setPopups(prevPopups => [...prevPopups, newPopup]);
 
         // Удаляем всплывающее окно через 5 секунд
@@ -36,7 +47,7 @@ const WrapButtonsMob = observer((props) => {
     let newCost = props.val-(props.val*0.1)
   return (
   <WrapButtonst>
-                <Buttonst onClick={joinFunc} className='WrapBut'>
+                <Buttonst onClick={user.isAuth ? joinFunc : PassF} className='WrapBut'>
                     {props.text} &nbsp;
                     <b className= {
                         (user.isAuth & user.Lead > 0 & !(user.useLead))?

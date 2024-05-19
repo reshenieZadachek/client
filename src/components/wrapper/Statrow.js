@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { httpGetStat } from '../../http/game';
 
 export default function StatRow(props) {
     

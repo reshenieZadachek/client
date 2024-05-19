@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { observer } from 'mobx-react-lite'
 import Firstlvl from './Firstlvl'
 import Secondlvl from './Secondlvl'
 import { Context } from '../..'
-import { httpGetMyRooms } from '../../http/rooms'
 import Thirdlvl from './Thirdlvl'
 
 const  ViewRoom = observer(() => {
-    const { user } = useContext(Context)
     const { room } = useContext(Context) 
     let mas1 = room.MyRoom.firLvl
     const extendedArray1 = [...mas1];

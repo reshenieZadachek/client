@@ -33,6 +33,7 @@ const  Auth = observer(() => {
         formData.append('login', loginForm)
         formData.append('password', password)
         formData.append('email', email)
+        file ? formData.append('flag', true) : formData.append('flag', false)
         formData.append('file', file)
         formData.append('code', code)
         formData.append('role', 'USER')
@@ -131,13 +132,7 @@ const  Auth = observer(() => {
                               (
                                 email
                                 ?
-                                (
-                                  file
-                                  ?
-                                  false
-                                  :
-                                  true
-                                )
+                                false
                                 :
                                 true
                               ) 
@@ -158,13 +153,7 @@ const  Auth = observer(() => {
                                     (
                                       email
                                       ?
-                                      (
-                                        file
-                                        ?
-                                        'Зарегистрироваться'
-                                        :
-                                        'Добавьте изображение'
-                                      )
+                                      'Зарегистрироваться'
                                       :
                                       'Введите почту'
                                     ) 

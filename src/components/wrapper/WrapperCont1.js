@@ -1,13 +1,11 @@
 import { observer } from 'mobx-react-lite'
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Context } from '../..'
 import { httpGetDiscount } from '../../http/game'
-import { MARKETING_ROUTE, ROOMS_ROUTE, TGCHAN_ROUTE } from '../../utils/const'
+import { MARKETING_ROUTE, TGCHAN_ROUTE } from '../../utils/const'
 import WrapButtons from './WrapButton'
 import ProgressBar from './ProgressBar';
-import MyComponent from '../Mycomponent'
 
 import MenuMobile from './menuMobile'
 

@@ -26,11 +26,7 @@ const  WrapperCont2 = observer((props) => {
                 setstat10001lvl(data[0].room1lvl)
                 setstat10002lvl(data[0].room2lvl)
                 setstat10003lvl(data[0].room3lvl)
-            }
-            else{
-                console.log('я в элзе');
-            }
-            
+            }           
         })
       }, []);
   return (

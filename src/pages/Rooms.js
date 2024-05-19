@@ -13,7 +13,19 @@ const  Rooms = observer(() => {
   const {user} = useContext(Context);
   const { room } = useContext(Context)
   const [loading,setLoading] = useState(true)
-    
+  const style = {
+    position: 'relative',
+    flexWrap: 'wrap',
+    display: 'flex',
+    flex: '1 1 auto',
+    paddingTop:'10px',
+    width:'100%',
+    flexDirection: 'column',
+    minHeight: 'calc(100vh - 197px)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTop: '0.5px solid #2d3340',
+  }
     
   
   useEffect(() => {
@@ -23,12 +35,12 @@ const  Rooms = observer(() => {
   }, []);
   useEffect(() => {
     httpGetMyRooms(user.User.id, user.User.price).then(data => {
-      room.setMyRoom(data)
+      room.setMyRoom(data);
     }).finally(() => {setLoading(false)})
   }, [user.User.price]);
     if (loading){
       return(
-        <Spinner animation="border" role="status"><span>Loading...</span></Spinner>
+        <Spinner style={style} animation="border" role="status"><span>Loading...</span></Spinner>
       )
     }
   

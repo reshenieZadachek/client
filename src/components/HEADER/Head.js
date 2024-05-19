@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Context } from '../../index'
-import { COMMON_ROUTE, GAME_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, SETTINGS_ROUTE, TGBOT_ROUTE } from '../../utils/const'
+import { COMMON_ROUTE, GAME_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, TGBOT_ROUTE } from '../../utils/const'
 import { LiaTelegramPlane } from "react-icons/lia";
 import { BiLogoVk } from "react-icons/bi";
 import { LiaWhatsapp } from "react-icons/lia";
@@ -14,7 +14,8 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoExitOutline } from "react-icons/io5";
 import { FaClock } from "react-icons/fa";
 import { check } from '../../http/userAPI'
-import { IoLogoVk } from "react-icons/io";
+import { BsPersonFillUp } from "react-icons/bs";
+import { BsPersonFillDown } from "react-icons/bs";
 
 
 const Head = observer(() => {
@@ -151,7 +152,7 @@ const Head = observer(() => {
                                     <SubEl usProf={false} text = {'История Операций'} icon = {<FaClock style={{width:25,height:25}} />} />
                                     <Link id='income' to={TGBOT_ROUTE} className='SubHeadEl'>
                                         <SubEll>
-                                            <IoSettingsOutline style={{width:25,height:25}} />
+                                            <BsPersonFillDown style={{width:25,height:25}} />
                                         </SubEll>
                                         <SubEll>
                                             Пополнить
@@ -159,7 +160,7 @@ const Head = observer(() => {
                                     </Link>
                                     <Link to={TGBOT_ROUTE} className='SubHeadEl sub_nav_el_text pc_none'>
                                         <SubEll>
-                                            <IoSettingsOutline style={{width:25,height:25}} />
+                                            <BsPersonFillUp style={{width:25,height:25}} />
                                         </SubEll>
                                         <SubEll>
                                             Вывести

@@ -2,19 +2,11 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Context } from '../..'
-import { httpPostJoin } from '../../http/rooms'
 
 export default function RoomButtons(props) {
     const { user } = useContext(Context)
     const styleLink = {
         backgroundColor: '#f6a617'
-    }
-    const joinFunc = async () => {
-        let data;
-        const formData = new FormData()
-        formData.append('id', user.User.id)
-        formData.append('price', props.val)
-        data = await httpPostJoin(formData)
     }
   return (
     <WrapButtonst>

@@ -147,6 +147,7 @@ header footer{
     transition-duration: .3s;
     opacity: 0;
     z-index: 1;
+    border-radius: 10px;
 }
 .wrapImgBlock{
   width: 100px;

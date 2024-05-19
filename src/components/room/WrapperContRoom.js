@@ -1,9 +1,7 @@
 import { observer } from 'mobx-react-lite'
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Context } from '../..'
-import { DEFINE_ROUTE, FIRSTSTAGE_ROUTE, MEANING_ROUTE, NS_ROUTE, PERCNS_ROUTE, PROSANDCONS_ROUTE, RESULT_ROUTE, SECONDSTAGE_ROUTE, THIRDSTAGE_ROUTE } from '../../utils/const'
+import { FIRSTSTAGE_ROUTE, SECONDSTAGE_ROUTE, THIRDSTAGE_ROUTE } from '../../utils/const'
 import RoomButtons from './RoomButtons'
 import ViewRoom from './ViewRoom'
 

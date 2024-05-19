@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ReviewsText from '../components/reviews/ReviewsText';
-import WrapperCont2 from '../components/wrapper/WrapperCont2';
 import { useNavigate } from 'react-router-dom'
 import { httpGetRewiews, httpPostRewiew } from '../http/rewiews'
 import { Context } from '..';

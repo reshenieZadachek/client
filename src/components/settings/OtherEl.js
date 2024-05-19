@@ -5,7 +5,6 @@ import { Context } from '../..'
 
  const OtherEl = observer((props) => {
     const { user } = useContext(Context)
-    console.log(user.User);
   return (
         <Wrap>
             <Cont>

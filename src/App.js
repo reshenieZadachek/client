@@ -13,23 +13,37 @@ import Spinner from 'react-bootstrap/Spinner';
 const App = observer(() => {
   const {user} = useContext(Context)
   const [loading,setLoading] = useState(true)
-
+  const style = {
+    position: 'relative',
+    flexWrap: 'wrap',
+    display: 'flex',
+    flex: '1 1 auto',
+    paddingTop:'10px',
+    width:'100%',
+    flexDirection: 'column',
+    minHeight: 'calc(100vh - 197px)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTop: '0.5px solid #2d3340',
+  }
   useEffect(() => {
       check().then(data => {
-        if(!data){
-          alert('Я тут')
-        }
-        else{
+        if(data){
           user.setUser(data)
           user.setIsAuth(true)
         }
-      }).finally(() => {setLoading(false)}
+      }).finally(() => {
+        setLoading(false)}
       )      
     
   }, [])
   if (loading){
     return(
-      <Spinner animation="border" role="status"><span>Loading...</span></Spinner>
+      <BrowserRouter>
+        <Headers />
+        <Spinner style={style} animation="border" role="status"><span>Loading...</span></Spinner>
+        <Footer />
+      </BrowserRouter>
     )
   }
   return (

@@ -72,6 +72,16 @@ const WrapButtons = observer((props) => {
         setPopups(prevPopups => prevPopups.filter(popup => popup.id !== newPopup.id));
         }, 5000);
     }
+    const PassF = () => {
+        const data = ['Вы не вошли в аккаунт'];
+        const newPopup = { id: Date.now(), data};
+        setPopups(prevPopups => [...prevPopups, newPopup]);
+
+        // Удаляем всплывающее окно через 5 секунд
+        setTimeout(() => {
+        setPopups(prevPopups => prevPopups.filter(popup => popup.id !== newPopup.id));
+        }, 5000);
+    }
     let newCost = props.val-(props.val*0.1)
   return (<WrapButtonst>
     {
@@ -84,7 +94,7 @@ const WrapButtons = observer((props) => {
         :
             (props.row == 1
                 ?
-                <Buttonst onClick={joinFunc} className='WrapBut'>
+                <Buttonst onClick={ user.isAuth ? joinFunc : PassF} className='WrapBut'>
                     {props.text} &nbsp;
                     <b className= {
                         (user.isAuth & user.Lead > 0 & !(user.useLead))?

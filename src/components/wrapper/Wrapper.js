@@ -6,7 +6,6 @@ import WrapperCont1 from './WrapperCont1'
 import WrapperCont2 from './WrapperCont2'
 
 const Wrapper = observer(() => {
-    const {user} = useContext(Context)
   return (
     <Wrapperr>
         <ContentBody>
