@@ -31,9 +31,9 @@ const  ReviewsText = ({rewiews}) => {
             {rewiews.login}
           </span>
         </Link>
-        <span>
+        <Text>
           {rewiews.text}
-        </span>
+        </Text>
       </NameText>
     </Cont>
   )
@@ -46,6 +46,9 @@ const Cont = styled.div`
 `
 const RewImg = styled.span`
     padding: 5px;
+`
+const Text = styled.span`
+    word-break: break-all;
 `
 const NameText = styled.div`
     display: flex;

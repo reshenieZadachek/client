@@ -34,6 +34,7 @@ const  Auth = observer(() => {
       }else{
         formData.append('login', loginForm)
         formData.append('password', password)
+        formData.append('confpassword', confirmPassword)
         formData.append('email', email)
         file ? formData.append('flag', true) : formData.append('flag', false)
         formData.append('file', file)
@@ -66,7 +67,7 @@ const  Auth = observer(() => {
                       Логин
                     </label>
                     <input
-                        className="inputauth"
+                        className="inputauth important"
                         placeholder={isLogin ? "Введите ваш логин или email..." : "Введите ваш логин..."}
                         value={loginForm}
                         onChange={e => setLoginForm(e.target.value)}
@@ -76,7 +77,7 @@ const  Auth = observer(() => {
                       Пароль
                     </label>
                     <input
-                        className="inputauth"
+                        className="inputauth important"
                         placeholder="Введите ваш пароль"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
@@ -89,7 +90,7 @@ const  Auth = observer(() => {
                         Подтверждение пароля
                         </label>
                         <input
-                            className="inputauth"
+                            className="inputauth important"
                             placeholder="Повторите ваш пароль"
                             type="password"
                             value={confirmPassword}
@@ -99,7 +100,7 @@ const  Auth = observer(() => {
                           Почта
                         </label>
                         <input
-                            className="inputauth"
+                            className="inputauth important"
                             placeholder="Введите вашу почту"
                             type="email"
                             value={email}
@@ -127,52 +128,12 @@ const  Auth = observer(() => {
                       :
                       false
                     }
-                    <button disabled={
-                        isLogin
-                      ? 
-                        false 
-                      : 
-                        (
-                          loginForm.length >= 4
-                          ?
-                              (password === confirmPassword 
-                            ? 
-                              (
-                                email
-                                ?
-                                false
-                                :
-                                true
-                              ) 
-                            : 
-                              true)
-                          :
-                          true
-                        )
-                      } type="button" className="ButSubAuth" onClick={click}>
+                    <button type="button" className="ButSubAuth" onClick={click}>
                             {isLogin 
                             ? 
                               'Войти' 
-                            : 
-                              (loginForm.length >= 4 
-                                ?
-                                (password.length >=4 ? 
-                                  ( password === confirmPassword 
-                                  ? 
-                                    (
-                                      email
-                                      ?
-                                      'Зарегистрироваться'
-                                      :
-                                      'Введите почту'
-                                    ) 
-                                  : 
-                                    'Пароли не совпадают')
-                                  :
-                                  'Длина пароля меньше 4 символов')
-                                :  
-                                  'Длина логина меньше 4 символов'
-                              )
+                            : 'Зарегистрироваться'
+                              
                             }
                         </button>
                     <div>

@@ -68,7 +68,7 @@ const  Reviews = observer(() => {
     catch (error){
      console.error('WebSocket initialization error:', error);
     }
-    if(data === 'Вы уже добавили отзыв'){
+    if(data !== 'Ваш отзыв был сохранен'){
       mes = data
       const newPopup = { id: Date.now(), mes }
         setPopups(prevPopups => [...prevPopups, newPopup]);
