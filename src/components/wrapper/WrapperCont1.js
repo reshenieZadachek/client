@@ -3,13 +3,52 @@ import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Context } from '../..'
 import { httpGetDiscount } from '../../http/game'
-import { MARKETING_ROUTE, TGCHAN_ROUTE } from '../../utils/const'
+import { MARKETING_ROUTE,ROOMS_ROUTE, TGCHAN_ROUTE } from '../../utils/const'
 import WrapButtons from './WrapButton'
 import ProgressBar from './ProgressBar';
-
 import MenuMobile from './menuMobile'
+import { useNavigate } from 'react-router-dom'
+import SwimMes from '../SwimMes'
+import { httpPostJoin } from '../../http/rooms'
 
 const  WrapperCont1 = observer(() => {
+    const [popups, setPopups] = useState([]);
+    const navigate  = useNavigate()
+    const joinFunc = async (e) => {
+        let data;
+        const formData = new FormData()
+        formData.append('id', user.User.id)
+        formData.append('price', e.target.closest('.WrapBut').querySelector('b').textContent.trim())
+        data = await httpPostJoin(formData)
+        if (data.mes == 'Вы успешно вошли в комнату') {
+            user.User.roomlvl = data.roomlvl
+            user.User.balance = data.balance
+            user.User.room = data.room
+            user.User.price = data.price
+            user.useLeader = data.useLeader
+            navigate(ROOMS_ROUTE)
+        }
+        
+        const newPopup = { id: Date.now(), data };
+        setPopups(prevPopups => [...prevPopups, newPopup]);
+
+        // Удаляем всплывающее окно через 5 секунд
+        setTimeout(() => {
+        setPopups(prevPopups => prevPopups.filter(popup => popup.id !== newPopup.id));
+        }, 5000);
+    }
+    const PassF = () => {
+        const data = ['Вы не вошли в аккаунт'];
+        const newPopup = { id: Date.now(), data};
+        setPopups(prevPopups => [...prevPopups, newPopup]);
+
+        // Удаляем всплывающее окно через 5 секунд
+        setTimeout(() => {
+        setPopups(prevPopups => prevPopups.filter(popup => popup.id !== newPopup.id));
+        }, 5000);
+    }
+
+
     const [show,setShow] = useState(0)
     const { user } = useContext(Context)
     let tessttt = 0
@@ -73,7 +112,11 @@ const  WrapperCont1 = observer(() => {
                                 }}>
 	                Обучения
                 </SwimBut>
-                <MenuMobile showModal={show} />
+                <MenuMobile PassF={PassF} joinFunc={joinFunc} showModal={show} />
+
+                {popups.map(popup => (
+        <SwimMes key={popup.id} text={popup.data} />
+      ))}
                 
                 
             </WrapperrCont>

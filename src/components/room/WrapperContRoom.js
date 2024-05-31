@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import styled from 'styled-components'
 import { Context } from '../..'
+import { useContext } from 'react'
 import { FIRSTSTAGE_ROUTE, SECONDSTAGE_ROUTE, THIRDSTAGE_ROUTE } from '../../utils/const'
 import RoomButtons from './RoomButtons'
 import ViewRoom from './ViewRoom'

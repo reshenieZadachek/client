@@ -242,6 +242,7 @@ const ContWork = styled.div`
 const Wrapperr = styled.div`
   position: relative;
   display: flex;
+  margin-top: 75px;
   flex: 1 1 auto;
   padding-top:10px;
   width:100%;

@@ -33,13 +33,13 @@ const  WrapperCont2 = observer((props) => {
     <WrapperCont className='WrapperCont_stat' style={props.mystyle}>
         <Cont className='stats_row_items'>
                     <RowItem className='RowItem_stat'>
-                        <StatRow text='Комната на 1000' start ={true}/>
+                        <StatRow text='Обучение за 1000' start ={true}/>
                         <StatRow text='1 уровень' val={stat10001lvl} />
                         <StatRow text='2 уровень' val={stat10002lvl} />
                         <StatRow text='3 уровень' val={stat10003lvl} />
                     </RowItem>   
                     <RowItem className='RowItem_stat'>
-                        <StatRow text='Комната на 2500' start ={true} />
+                        <StatRow text='Обучение за 2500' start ={true} />
                         <StatRow text='1 уровень' val={stat25001lvl} />
                         <StatRow text='2 уровень' val={stat25002lvl} />
                         <StatRow text='3 уровень' val={stat25003lvl} />
@@ -47,13 +47,13 @@ const  WrapperCont2 = observer((props) => {
                 </Cont>
                 <Cont className='stats_row_items'>
                     <RowItem className='RowItem_stat'>
-                        <StatRow text='Комната на 5000' start ={true} />
+                        <StatRow text='Обучение за 5000' start ={true} />
                         <StatRow text='1 уровень' val={stat50001lvl} />
                         <StatRow text='2 уровень' val={stat50002lvl} />
                         <StatRow text='3 уровень' val={stat50003lvl} />
                     </RowItem>
                     <RowItem className='RowItem_stat'>
-                        <StatRow text='Комната на 10000' start ={true} />
+                        <StatRow text='Обучение за 10000' start ={true} />
                         <StatRow text='1 уровень' val={stat100001lvl} />
                         <StatRow text='2 уровень' val={stat100002lvl} />
                         <StatRow text='3 уровень' val={stat100003lvl} />

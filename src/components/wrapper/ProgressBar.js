@@ -9,7 +9,7 @@ const ProgressBar = ({ level, text }) => {
   const { user } = useContext(Context)
   useEffect(() => {
     // Обновление ширины прогресса при изменении уровня
-    if (level === 'Вы не вступили в комнату') {
+    if (level === 'Вы не вступили в группу') {
         const progressBarWidth = 0 + '%';
         setProgressWidth(progressBarWidth);   
     }
@@ -21,10 +21,10 @@ const ProgressBar = ({ level, text }) => {
   }, [level]);
 
   return (
-    <Link to={level != 'Вы не вступили в комнату' && ROOMS_ROUTE}  className="progress-bar">
+    <Link to={level != 'Вы не вступили в группу' && ROOMS_ROUTE}  className="progress-bar">
         <div className='swimTextBar'>
             {
-                level === 'Вы не вступили в комнату'?
+                level === 'Вы не вступили в группу'?
                 level
                 :
                 text
@@ -34,13 +34,13 @@ const ProgressBar = ({ level, text }) => {
         
       </div>
       {
-        level === 'Вы не вступили в комнату'?
+        level === 'Вы не вступили в группу'?
         ''
         :
         <div className="progress-text-people">Человек в группе: {level}/16</div>
       }
       {
-        level === 'Вы не вступили в комнату'?
+        level === 'Вы не вступили в группу'?
         ''
         :
         <div className="progress-text-lvl">Уровень группы: {user.User.roomlvl}</div>

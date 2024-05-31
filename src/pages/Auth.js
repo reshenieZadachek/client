@@ -5,12 +5,14 @@ import { GAME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/const'
 import { Context } from '..'
 import { login, registration } from '../http/userAPI'
 import { observer } from 'mobx-react-lite'
+import SwimMes from '../components/SwimMes'
 
 const  Auth = observer(() => {
-
   const location = useLocation()
   const navigate  = useNavigate ()
   const isLogin = location.pathname === LOGIN_ROUTE
+
+  const [popups, setPopups] = useState([]);
 
   const {user} = useContext(Context)
   
@@ -43,7 +45,13 @@ const  Auth = observer(() => {
       user.setIsAuth(true)
       navigate(GAME_ROUTE)
     } catch (e) {
-      alert(e.response.data.message)
+      const newPopup = { id: Date.now(), data: e.response.data.message };
+        setPopups(prevPopups => [...prevPopups, newPopup]);
+
+        // Удаляем всплывающее окно через 5 секунд
+        setTimeout(() => {
+        setPopups(prevPopups => prevPopups.filter(popup => popup.id !== newPopup.id));
+        }, 5000);
     }
   }
   const selectFile = e => {
@@ -51,7 +59,7 @@ const  Auth = observer(() => {
   }
   return (
     <AuthCon>
-      <div style={{maxWidth: 1200, flex: '1 1 auto', display: 'flex', flexWrap:'wrap',color:'white',border:'2px solid #2d3340',padding:20}}>
+      <div style={{maxWidth: 800, flex: '1 1 auto', display: 'flex', flexWrap:'wrap',color:'white',border:'2px solid #2d3340',padding:20}}>
                 <h2 style={{ width: '100%', textAlign: 'center' ,}}>{isLogin ? 'Авторизация' : "Регистрация"}</h2>
                 <form style={{display: 'flex', flexDirection:'column',justifyContent:'center',width: '100%',}}>
                     <label>
@@ -147,7 +155,8 @@ const  Auth = observer(() => {
                               'Войти' 
                             : 
                               (loginForm.length >= 4 
-                                ? 
+                                ?
+                                (password.length >=4 ? 
                                   ( password === confirmPassword 
                                   ? 
                                     (
@@ -159,6 +168,8 @@ const  Auth = observer(() => {
                                     ) 
                                   : 
                                     'Пароли не совпадают')
+                                  :
+                                  'Длина пароля меньше 4 символов')
                                 :  
                                   'Длина логина меньше 4 символов'
                               )
@@ -177,12 +188,16 @@ const  Auth = observer(() => {
                     </div>
                 </form>
             </div>
+            {popups.map(popup => (
+        <SwimMes key={popup.id} text={popup.data} />
+      ))}
     </AuthCon>
   )
 })
 export default Auth; 
 
 const AuthCon = styled.div`
+  margin-top: 75px;
 position: relative;
 flex-wrap: wrap;
 display: flex;
@@ -194,3 +209,4 @@ justify-content: center;
 align-items: center;
 border-top: 0.5px solid #2d3340;
 `
+

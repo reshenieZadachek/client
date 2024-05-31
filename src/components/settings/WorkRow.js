@@ -5,8 +5,23 @@ import SwimMes from '../SwimMes'
  const WorkRow = (props) => {
     const [popups, setPopups] = useState([]);
     const handleCopyClick = () => {
-        
-        navigator.clipboard.writeText(props.myref).then(() => {
+        const textArea = document.createElement("textarea");
+        textArea.value = props.myref;
+	textArea.style.position = 'fixed';
+        textArea.style.top = '0';
+        textArea.style.left = '0';
+        textArea.style.width = '2em';
+        textArea.style.height = '2em';
+        textArea.style.padding = '0';
+        textArea.style.border = 'none';
+        textArea.style.outline = 'none';
+        textArea.style.boxShadow = 'none';
+        textArea.style.background = 'transparent';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
             const data = 'Код скопирован успешно'
             const newPopup = { id: Date.now(), data };
             setPopups(prevPopups => [...prevPopups, newPopup]);
@@ -15,7 +30,7 @@ import SwimMes from '../SwimMes'
             setTimeout(() => {
             setPopups(prevPopups => prevPopups.filter(popup => popup.id !== newPopup.id));
             }, 5000);
-        }).catch(err => {
+        } catch (err) {
             const data = 'Ошибка! Код не был скопирован'
             const newPopup = { id: Date.now(), data };
             setPopups(prevPopups => [...prevPopups, newPopup]);
@@ -24,8 +39,14 @@ import SwimMes from '../SwimMes'
             setTimeout(() => {
             setPopups(prevPopups => prevPopups.filter(popup => popup.id !== newPopup.id));
             }, 5000);
-        });
+        }
+        document.body.removeChild(textArea);
       };
+     const style = {
+        minHeight: 'unset',
+        padding: 0,
+        maxWidth: 'calc(100% - 120px)',
+    }
   return (
         <Wrap>
             <Cont>
@@ -34,7 +55,7 @@ import SwimMes from '../SwimMes'
 
                         props.labelValue == 'Ваш пригласительный код' ?
                         <ContRef>
-                            <InpRow onChange={props.func} value={props.val} placeholder={props.inputPlaceholder} />
+                            <InpRow style={style}  onChange={props.func} value={props.val} placeholder={props.inputPlaceholder} />
                             <Copy onClick={handleCopyClick}>
                                 скопировать
                             </Copy>
@@ -92,8 +113,18 @@ const InpRow = styled.input`
 const ContRef = styled.div`
     display: flex;
     position: relative;
+    margin: 0;
+    background-color: #262b37;
+    min-height: 20px;
+    padding: 10px;
+    background: #262b37;
+    color: white;
+    border: unset;
+    border-radius: 10px;
+    outline: none;
+    max-height: 40px;
+    flex: 1 1 auto;
     align-items: center;
-    justify-content: center;
 `
 const Copy = styled.div`
     cursor: pointer;

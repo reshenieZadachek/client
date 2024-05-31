@@ -28,7 +28,9 @@ const  Learn = () => {
                 is3St && <ThirdStage />
               }
               {
-                !is1St & !is2St & !is3St && <Market />
+               (!is1St & !is2St & !is3St) ? <Market />
+		:
+		''
               }
             </RowItem1>    
         </WrapSet>
@@ -42,6 +44,7 @@ const Wrapperr = styled.div`
   display: flex;
   flex: 1 1 auto;
   width:100%;
+  margin-top: 75px;
   min-height: calc(100vh - 197px);
   justify-content: center;
   border-top: 0.5px solid #2d3340;

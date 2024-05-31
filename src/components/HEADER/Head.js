@@ -87,13 +87,13 @@ const Head = observer(() => {
                         Поделиться
                     </Share>
                     <SocialIcon>
-                        <a className = "socials_cont" href="https://vk.com/share.php?url=https://MoneySlide.ru" target="_blank" rel="noopener">
+                        <a className = "socials_cont" href="https://vk.com/share.php?url=https://moneyslide.ru" target="_blank" rel="noopener">
                         <BiLogoVk  style={{color:'white',fontSize:'18pt'}} />
 							</a>
-							<a className = "socials_cont" href="https://api.whatsapp.com/send?text=Привет уже видел новый сервис для заработка MoneySlide? https://ms.ru" target="_blank" rel="noopener">
+							<a className = "socials_cont" href="https://api.whatsapp.com/send?text=Ты уже слышал о сайте, который научит перспективным профессиям в наше время и, помимо этого, еще радует вознаграждением? https://moneyslide.ru" target="_blank" rel="noopener">
                             <LiaWhatsapp style={{color:'white',fontSize:'18pt'}} />
 							</a>
-							<a href="https://t.me/share/url?text=https://MoneySlide.ru&url=Привет уже видел новый сервис для заработка MoneySlide?" target="_blank" rel="noopener" className = "socials_cont">
+							<a href="https://t.me/share/url?text=https://moneyslide.ru&url=Ты уже слышал о сайте, который научит перспективным профессиям в наше время и, помимо этого, еще радует вознаграждением?" target="_blank" rel="noopener" className = "socials_cont">
                             <LiaTelegramPlane style={{color:'white',fontSize:'18pt'}} />
 							</a>
                     </SocialIcon>

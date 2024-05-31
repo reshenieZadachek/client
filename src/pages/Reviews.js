@@ -14,10 +14,10 @@ const  Reviews = observer(() => {
   const [popups, setPopups] = useState([]);
   let ws;
   useEffect(() => {
-    ws = new WebSocket('ws://localhost:5000');
+    ws = new WebSocket('wss://moneyslide.ru/api');
 
     ws.onopen = function () {
-      
+      console.log('Подключился успешно')
     };
 
     ws.onmessage = function (event) {
@@ -53,7 +53,8 @@ const  Reviews = observer(() => {
     formData.append('page', rewiews.page)
     data = await httpPostRewiew(formData)
     setTextForm('')
-    ws = new WebSocket('ws://localhost:5000');
+    try{
+    ws = new WebSocket('wss://moneyslide.ru/api');
     ws.onopen = function () {
       ws.send(JSON.stringify({ text: 'Я ТУТААА' }));
     };
@@ -63,6 +64,10 @@ const  Reviews = observer(() => {
         rewiews.setTotalCount(data.count)
       })
     };
+    }
+    catch (error){
+     console.error('WebSocket initialization error:', error);
+    }
     if(data === 'Вы уже добавили отзыв'){
       mes = data
       const newPopup = { id: Date.now(), mes }
@@ -137,6 +142,7 @@ const Wrapperr = styled.div`
   flex: 1 1 auto;
   padding-top:10px;
   width:100%;
+  margin-top: 75px;
   min-height: calc(100vh - 197px);
   justify-content: center;
   border-top: 0.5px solid #2d3340;
@@ -180,7 +186,6 @@ const RewCont = styled.div`
   max-width: 1200px;
 `
 const SendRew = styled.div`
-    padding: 5px 10px 10px 10px;
     display: flex;
     position: relative;
     width:100%;

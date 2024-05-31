@@ -20,6 +20,7 @@ const Wrapper = observer(() => {
 const Wrapperr = styled.div`
     position: relative;
     flex-wrap: wrap;
+  margin-top: 75px;
     display: flex;
     flex: 1 1 auto;
     padding-top:10px;

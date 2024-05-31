@@ -73,6 +73,7 @@ const Wrapperr = styled.div`
   flex: 1 1 auto;
   padding-top:10px;
   width:100%;
+  margin-top: 75px;
   min-height: calc(100vh - 197px);
   justify-content: center;
   border-top: 0.5px solid #2d3340;

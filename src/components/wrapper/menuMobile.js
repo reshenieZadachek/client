@@ -3,14 +3,14 @@ import './MenuMobile.css';
 import WrapButtonsMob from './WrapButtonMob'
 import styled from 'styled-components'
 
-const MenuMobile = ({showModal}) => {
+const MenuMobile = ({showModal, joinFunc, PassF}) => {
   return (
     <Menu className={`pc_none modal ${showModal ? 'show' : 'hide'}`}>
         <Cont>
-        <WrapButtonsMob row = {1} text='Обучение за ' val={1000}  />
-        <WrapButtonsMob row = {1} text='Обучение за '  val={2500} />
-        <WrapButtonsMob row = {1} text='Обучение за '  val={5000} />
-        <WrapButtonsMob row = {1} text='Обучение за '  val={10000} />
+        <WrapButtonsMob joinFunc={joinFunc} PassF={PassF} row = {1} text='Обучение за ' val={1000}  />
+        <WrapButtonsMob joinFunc={joinFunc} PassF={PassF} row = {1} text='Обучение за '  val={2500} />
+        <WrapButtonsMob joinFunc={joinFunc} PassF={PassF} row = {1} text='Обучение за '  val={5000} />
+        <WrapButtonsMob joinFunc={joinFunc} PassF={PassF} row = {1} text='Обучение за '  val={10000} />
         </Cont>
     </Menu>
   );

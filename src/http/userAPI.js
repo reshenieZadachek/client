@@ -2,20 +2,20 @@ import { $authhost, $host } from "./index";
 import {jwtDecode } from "jwt-decode";
 
 export const registration = async (postus) =>{
-    const {data} = await $host.post('api/user/registration', postus)
+    const {data} = await $host.post('user/registration', postus)
     localStorage.setItem('token', data.token)
     return jwtDecode (data.token)
 }
 
 export const login = async (login) =>{
-    const {data} = await $host.post('api/user/login', login)
+    const {data} = await $host.post('user/login', login)
     localStorage.setItem('token', data.token)
     return jwtDecode (data.token)
 }
 
 export const check = async () =>{
     try {
-        const {data} = await $authhost.get('api/user/auth')
+        const {data} = await $authhost.get('user/auth')
         localStorage.setItem('token', data.token)
         return jwtDecode (data.token)
     } catch (e) {
@@ -26,13 +26,13 @@ export const check = async () =>{
 }
 
 export const changeProfImg = async (params) =>{
-    const {data} = await $authhost.post('api/user/change/img', params)
+    const {data} = await $authhost.post('user/change/img', params)
     localStorage.setItem('token', data.token)
     return jwtDecode (data.token)
 }
 export const changeProfCommon = async (params) =>{
     try {
-        const {data} = await $authhost.post('api/user/change/common', params)
+        const {data} = await $authhost.post('user/change/common', params)
         localStorage.setItem('token', data.token)
         const mas = [true, jwtDecode(data.token)]
         return mas
@@ -44,7 +44,7 @@ export const changeProfCommon = async (params) =>{
 }
 export const changeProfSecurity = async (params) =>{
     try {
-        const {data} = await $authhost.post('api/user/change/security', params)
+        const {data} = await $authhost.post('user/change/security', params)
         localStorage.setItem('token', data.token)
         const mas = [true, jwtDecode(data.token)]
         return mas
@@ -54,7 +54,7 @@ export const changeProfSecurity = async (params) =>{
     }
 }
 export const changeProfOther = async (params) =>{
-    const {data} = await $authhost.post('api/user/change/other', params)
+    const {data} = await $authhost.post('user/change/other', params)
     localStorage.setItem('token', data.token)
     return jwtDecode(data.token)
 }
