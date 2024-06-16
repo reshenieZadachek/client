@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import WrapperCont2 from '../components/wrapper/WrapperCont2';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components'
@@ -9,18 +9,23 @@ import ProfInfo from '../components/profile/ProfInfo';
 //import styled from 'styled-components'
 
 const  Profile = observer(() => {
+  const [ allPopoln, setAllPopoln ] = useState(0)
+  const [ allVivod, setAllVivod ] = useState(0)
+
   const {id} = useParams()
   const { profInfost } = useContext(Context)
     useEffect(() => {
       httpGetProf(id).then(data => {
-        profInfost.setLogin(data.login)
-        profInfost.setAvatar(data.avatar)
+        profInfost.setLogin(data.profile.login)
+        profInfost.setAvatar(data.profile.avatar)
+        setAllPopoln(data.historyPopoln)
+        setAllVivod(data.historyVivel)
       })
     }, [])
     useEffect(() => {
       httpGetProf(id).then(data => {
-        profInfost.setLogin(data.login)
-        profInfost.setAvatar(data.avatar)
+        profInfost.setLogin(data.profile.login)
+        profInfost.setAvatar(data.profile.avatar)
       })
     }, [id])
   return ( 
@@ -36,7 +41,7 @@ const  Profile = observer(() => {
                         Пополнил
                         </label>
                         <TextBl>
-                        статистика недоступна во время бета теста
+                        {allPopoln}
                         </TextBl>
                     </WRBlock>
                     <WRBlock>
@@ -44,7 +49,7 @@ const  Profile = observer(() => {
                           Обменял
                         </label>
                         <TextBl>
-                        статистика недоступна во время бета теста
+                        {allVivod}
                         </TextBl>
                     </WRBlock>
                   </WorkRow>

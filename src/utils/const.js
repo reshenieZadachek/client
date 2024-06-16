@@ -21,3 +21,6 @@ export const MARKETING_ROUTE = LEARN_ROUTE + '/marketing'
 
 export const TGBOT_ROUTE = 'https://t.me/MS_pomoshnik_bot'
 export const TGCHAN_ROUTE = 'https://t.me/perehodnik_ms'
+
+
+export const ADMIN_ROUTE = '/AdmPan'

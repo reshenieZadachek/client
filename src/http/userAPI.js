@@ -58,3 +58,7 @@ export const changeProfOther = async (params) =>{
     localStorage.setItem('token', data.token)
     return jwtDecode(data.token)
 }
+export const GetHistory = async (params) =>{
+    const {data} = await $authhost.get(`user/myhistory?id=${params}`)
+    return data
+}

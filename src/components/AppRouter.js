@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 //import styled from 'styled-components'
 import {Routes, Route, Navigate} from 'react-router-dom'
-import { authRoutes, learnRouteFirst, learnRouteSecond, learnRouteThird, publicRoutes } from '../routes'
+import { adminRoutes, authRoutes, learnRouteFirst, learnRouteSecond, learnRouteThird, publicRoutes } from '../routes'
 import { GAME_ROUTE } from '../utils/const'
 import { Context } from '../index'
 import { observer } from 'mobx-react-lite'
@@ -11,6 +11,9 @@ const  AppRouter = observer(() => {
     const {user} = useContext(Context)
   return (
     <Routes>
+        {(user.isAuth & user.User.role === 'ADMIN') && adminRoutes.map(({path, Component}) => 
+            <Route key={path} path={path} element = {<Component />} />
+        )}
         {(user.isAuth & user.User.room >= 1) && learnRouteFirst.map(({path, Component}) => 
             <Route key={path} path={path} element = {<Component />} />
         )}

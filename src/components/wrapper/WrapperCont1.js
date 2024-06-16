@@ -9,7 +9,7 @@ import ProgressBar from './ProgressBar';
 import MenuMobile from './menuMobile'
 import { useNavigate } from 'react-router-dom'
 import SwimMes from '../SwimMes'
-import { httpPostJoin } from '../../http/rooms'
+import { httpEnd0, httpPostJoin } from '../../http/rooms'
 
 const  WrapperCont1 = observer(() => {
     const [popups, setPopups] = useState([]);
@@ -68,6 +68,20 @@ const  WrapperCont1 = observer(() => {
         pass();
     }, [])
     let mobst = {display: 'none'};
+
+    const disp = {
+        display: 'flex',
+    }
+    const BGBalance ={
+        backgroundImage: `url(${process.env.REACT_APP_API_URL}balance.svg)`,
+    }
+    const [end, setEnd] = useState(user.User.end)
+    const end0 = async(e) => {
+        const formData = new FormData()
+        formData.append('id', user.User.id)
+        const data = await httpEnd0(formData)
+        setEnd(0)
+    }
     return (
     <WrapperrCont>
                 <RowItem1>
@@ -77,7 +91,9 @@ const  WrapperCont1 = observer(() => {
                             <ProgressBar level={user.progress} text={'В ГРУППУ'} />
                         </ContBar>
                     }
-                    <TextWrap>
+                    <TextWrap onClick={() =>{
+                        setEnd(1)
+                    }}>
                     MoneySlide - это сайт, который  научит вас такими навыками, как Маркетинг, Процентное накопления, обучит вас финансовой грамотности и все это в игровой форме.<br/>
                     </TextWrap>
                     <br/>
@@ -118,11 +134,64 @@ const  WrapperCont1 = observer(() => {
         <SwimMes key={popup.id} text={popup.data} />
       ))}
                 
-                
+             <EndModalContainer style={end ? disp : {}}>
+                <EndModal>
+                    <ModalTextCont><ModalText>За прохождение обучения вы получили</ModalText><ModalContSum><ModalSum>10000</ModalSum><BalansImg style={BGBalance}></BalansImg></ModalContSum></ModalTextCont>
+                    <ModalButton onClick={end0}>Ок</ModalButton>
+                </EndModal>
+            </EndModalContainer>   
             </WrapperrCont>
   )
 })
-
+const ModalButton = styled.button`
+    padding: 10px 30px;
+    margin-top: 20px;
+    display: flex;
+    flex: 1 1 auto;
+    background: #f6a617;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 14pt;
+`
+const ModalText = styled.div`
+    font-size: 16pt;
+`
+const ModalContSum = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+const ModalSum = styled.div`
+font-family: fantasy;
+    font-size: 45pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+`
+const BalansImg = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+height: 20px;
+width: 20px;
+padding: 10px;
+`
+const ModalTextCont = styled.div`
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+font-size:25pt;
+`
 const WrapperrCont = styled.div`
     display: flex;
     flex: 1 1 auto;
@@ -200,5 +269,32 @@ const ContBar = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
+`
+
+const EndModalContainer = styled.div`
+display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+	align-items: center;
+    background-color: #000000a6;
+	z-index: 30;
+	transition-duration: .5s;
+`
+const EndModal = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+	max-width: 900px;
+	background: #20242d;
+	position: relative;
+	padding: 20px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
 `
 export default WrapperCont1; 

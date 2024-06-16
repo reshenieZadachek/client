@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Context } from '../../index'
-import { COMMON_ROUTE, GAME_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, TGBOT_ROUTE } from '../../utils/const'
+import { ADMIN_ROUTE, COMMON_ROUTE, GAME_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, TGBOT_ROUTE } from '../../utils/const'
 import { LiaTelegramPlane } from "react-icons/lia";
 import { BiLogoVk } from "react-icons/bi";
 import { LiaWhatsapp } from "react-icons/lia";
@@ -13,9 +13,10 @@ import SubEl from './SubEl'
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoExitOutline } from "react-icons/io5";
 import { FaClock } from "react-icons/fa";
-import { check } from '../../http/userAPI'
+import { check, GetHistory } from '../../http/userAPI'
 import { BsPersonFillUp } from "react-icons/bs";
 import { BsPersonFillDown } from "react-icons/bs";
+import { MdOutlineSecurity } from "react-icons/md";
 
 
 const Head = observer(() => {
@@ -53,6 +54,12 @@ const Head = observer(() => {
             $(".sub_nav").css({
                 "display":"flex",
             });
+            $(".triangle_adm").css({
+                "display":"flex",
+            });
+            $(".sub_nav_adm").css({
+                "display":"flex",
+            });
         }
         else{
             $(".triangle").css({
@@ -61,10 +68,44 @@ const Head = observer(() => {
             $(".sub_nav").css({
                 "display":"none",
             });
+            $(".triangle_adm").css({
+                "display":"none",
+            });
+            $(".sub_nav_adm").css({
+                "display":"none",
+            });
         }
     const BGBalance ={
         backgroundImage: `url(${process.env.REACT_APP_API_URL}balance.svg)`,
     }
+
+    const [ popolnil, setPopolnil ] = useState([])
+    const [ vivel, setVivel ] = useState([])
+    const [ hide, setHide ] = useState(0)
+    const disp = {
+        display: 'flex'
+    }
+
+    const closeModal = () => {
+        setHide(0)
+    }
+
+    const historyOp = async () => {
+        const startvis = user.isVisible
+        user.setIsVisible(!startvis)
+        setHide(1)
+        const data = await GetHistory(user.User.id)
+        setPopolnil(data.popoln)
+        setVivel(data.vivod)
+        console.log(data);
+    }
+    const formatDate = (isoString) => {
+        const date = new Date(isoString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0, добавляем 1
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${day}.${month}.${year}`;
+      };
   return (
     <Headst>
         <HeadEl1>
@@ -111,9 +152,7 @@ const Head = observer(() => {
                                 <BalanceValue>
                                     <BalanceValueEl>
                                         {user.User.balance}
-                                        <BalansImg style={BGBalance}>
-
-                                        </BalansImg>
+                                        <BalansImg style={BGBalance}/>
                                     </BalanceValueEl>
                                 </BalanceValue>
                             </BalanceCont>
@@ -129,16 +168,14 @@ const Head = observer(() => {
 
                         <El2El2>
                             <ProfLogo className = "socials_cont" onClick={() => 
-                            {
+                                {
                                 const startvis = user.isVisible
                                 user.setIsVisible(!startvis)
                                 }}>
                                 <PiUserLight  style={{width:'80%',height:'80%'}}/>
                             </ProfLogo>
-                            <Triangle className='triangle'>
-
-                            </Triangle>
-                            <SubHeadCont className='sub_nav'>
+                            <Triangle className={user.User.role === 'ADMIN' ?'triangle_adm': 'triangle'}/>
+                            <SubHeadCont className={user.User.role === 'ADMIN' ? 'sub_nav_adm' : 'sub_nav'}>
                                 <SubHead>
                                     <SubEl func = {() => {
                                         const startvis = user.isVisible
@@ -149,7 +186,7 @@ const Head = observer(() => {
                                         const startvis = user.isVisible
                                         user.setIsVisible(!startvis)
                                         }} go = {COMMON_ROUTE} usProf={false} text = {'Настройки'} icon = {<IoSettingsOutline style={{width:25,height:25}} />} />
-                                    <SubEl usProf={false} text = {'История Операций'} icon = {<FaClock style={{width:25,height:25}} />} />
+                                    <SubEl func = {historyOp} usProf={false} text = {'История Операций'} icon = {<FaClock style={{width:25,height:25}} />} />
                                     <Link id='income' to={TGBOT_ROUTE} className='SubHeadEl'>
                                         <SubEll>
                                             <BsPersonFillDown style={{width:25,height:25}} />
@@ -166,6 +203,10 @@ const Head = observer(() => {
                                             Вывести
                                         </SubEll>
                                     </Link>
+                                    {(user.User.role == 'ADMIN') ? <SubEl func = {() => {
+                                        const startvis = user.isVisible
+                                        user.setIsVisible(!startvis)
+                                        }} usProf={false} go = {ADMIN_ROUTE} text = {'Админ панель'} icon = {<MdOutlineSecurity style={{width:25,height:25}}/>} />:''}
                                     <SubEl usProf={false} text = {'Выход'} icon = {<IoExitOutline style={{width:25,height:25}} />}  func = {logOut} />
                                 </SubHead>
                             </SubHeadCont>
@@ -185,22 +226,150 @@ const Head = observer(() => {
                     </HeadEl2El2>
             }
         </HeadEl2>
+        <ModalContainer className='class' style={hide ? disp : {}}>
+                <Modal>
+                    <ModalEl>
+                        <ModalPopoln>
+                            <b>Пополнение</b>
+                        </ModalPopoln>
+                        <Operation>
+                            {
+                                popolnil.length > 0
+                                ?
+                                popolnil.map(el => (
+                                    <OpEl key={el.id}><HistoryData>{formatDate(el.createdAt)} | <HistoryValue>{el.value}<HistoryImg style={BGBalance}/></HistoryValue></HistoryData><b style={{color:'#1cff1cd6'}}>Выполнено</b></OpEl>
+                                ))
+                                :
+                                'Операции не проводились'
+                            }
+                        </Operation>
+                    </ModalEl>
+                    <ModalEl>
+                        <ModalVivod>
+                            <b>Вывод</b>
+                        </ModalVivod>
+                        <Operation>
+                            {
+                                vivel.length > 0
+                                ?
+                                vivel.map(el => (
+                                    <OpEl key={el.id}><HistoryData>{formatDate(el.createdAt)} | <HistoryValue>{el.value}<HistoryImg style={BGBalance}/></HistoryValue></HistoryData><b style={{color:'#1cff1cd6'}}>Выполнено</b></OpEl>
+                                ))
+                                :
+                                'Операции не проводились'
+                            }
+                        </Operation>
+                    </ModalEl>
+                    <Exit onClick={closeModal}>
+                        х
+                    </Exit>
+                </Modal>
+            </ModalContainer> 
     </Headst>
   )
 })
+const HistoryData = styled.div`
+display: flex;
+flex-wrap: wrap;
+`
+const HistoryValue = styled.div`
+display: flex;
+`
+const Exit = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 5px;
+    right: 15px;
+    position: absolute;
+    margin-left: 100px;
+    height: 25px;
+    width: 25px;
+    color: #898989;
+    font-size: 17pt;
+    cursor: pointer;
+    transition-duration: .5s;
+`
+const ModalPopoln = styled.div`
+    margin: 5px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 auto;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 0.5px solid #f6a617;
+    transition-duration: .5s;
+    background-color: #f6a617;
+`
+const ModalVivod = styled.div`
+    margin: 5px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 auto;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 0.5px solid #2d3340;
+    transition-duration: .5s;
+`
+const ModalEl = styled.div`
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+`
+const OpEl = styled.div`
+    
+`
+const Operation = styled.div`
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+`
+const ModalContainer = styled.div`
+display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+	align-items: center;
+    background-color: #000000a6;
+	z-index: 30;
+	transition-duration: .5s;
+    color: white;
+`
+const Modal = styled.div`
+    display: flex;
+    background: #20242d;
+    position: relative;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1 1 auto;
+    max-width: 400px;
+    max-height: 350px;
+    justify-content: space-around;
+    flex-direction: row;
+    overflow-y: scroll;
+`
+
+
 const SubEll = styled.div`
     display: flex;
     flex: 0 1 auto;
     margin: 0 5px;
     font-weight: 300;
-`
-const ProfImg = styled.div`
-    width: 50px;
-    height: 50px;
-    font-weight: 300;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
 `
 const Headst = styled.div`
 display: flex;
@@ -383,6 +552,11 @@ background-size: cover;
 margin: 0 2px;
 height: 10px;
 width: 10px;
+padding: 10px;
+`
+const HistoryImg = styled.div`
+height: 1px;
+width: 1px;
 padding: 10px;
 `
 export default Head

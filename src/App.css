@@ -652,3 +652,105 @@ justify-content: space-between;
 .important:placeholder-shown{
   border: 1px solid #f6a617;
 }
+
+.container_ty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner_ty {
+  display: inline-block;
+  perspective: 1000px; /* Добавляем перспективу */
+}
+
+.text_ty {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f6a617;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  animation: rotate_ty 2s linear infinite;
+  transform-style: preserve-3d; /* Сохраняем 3D-структуру */
+  padding: 10px; /* Добавляем отступы, чтобы текст не "слипался" с тенью */
+  position: relative; /* Устанавливаем относительное позиционирование для добавления тени */
+}
+
+.text_ty::before {
+  content: attr(data-content); /* Отображаем текст */
+  position: absolute; /* Абсолютное позиционирование для тени */
+  top: 0;
+  left: 0;
+  color: rgba(0, 0, 0, 0.2); /* Цвет тени */
+  transform: translate(-2px, -2px); /* Смещаем тень влево и вверх */
+}
+
+@keyframes rotate_ty {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+.triangle_adm{
+  margin-top: 455px;
+  margin-left: 455px;
+}
+.admdel:hover{
+  background: red;
+}
+/* Для Webkit-браузеров (например, Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Толще скроллбар */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Прозрачный фон скроллбара */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2); /* Полупрозрачный скроллбар */
+  border-radius: 4px; /* Скругление углов */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4); /* Более темный при наведении */
+}
+
+/* Для Firefox */
+body {
+  scrollbar-width: auto; /* Толще скроллбар */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Полупрозрачный скроллбар и прозрачный фон */
+}
+
+/* Для Webkit-браузеров (например, Chrome, Safari) */
+.class::-webkit-scrollbar {
+  width: 4px; /* Очень тонкий скроллбар */
+}
+
+.class::-webkit-scrollbar-track {
+  background: transparent; /* Прозрачный фон скроллбара */
+}
+
+.class::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2); /* Полупрозрачный скроллбар */
+  border-radius: 2px; /* Скругление углов */
+}
+
+.class::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4); /* Более темный при наведении */
+}
+
+/* Для Firefox */
+.class {
+  scrollbar-width: thin; /* Очень тонкий скроллбар */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Полупрозрачный скроллбар и прозрачный фон */
+}
+.section {
+  padding: 10px 0;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}

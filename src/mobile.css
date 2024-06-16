@@ -1,3 +1,20 @@
+@media screen and (max-width:5000px){
+	.sub_nav_adm{
+		/*
+		margin-top: 439px;
+		margin-left: -195px;
+		
+		margin-top: 375px;
+    margin-left: -170px;
+    */
+    margin-top: 460px !important;
+    margin-left: -200px !important;
+	}
+	.triangle_adm{
+		margin-top: 75px !important;
+		margin-left: 20px !important;
+	}
+}
 @media screen and (max-width: 720px){
 	.pc_none{
 		display: flex !important;
@@ -30,6 +47,17 @@
     margin-left: -170px;
     */
     margin-top: 455px !important;
+    margin-left: -200px !important;
+	}
+	.sub_nav_adm{
+		/*
+		margin-top: 439px;
+		margin-left: -195px;
+		
+		margin-top: 375px;
+    margin-left: -170px;
+    */
+    margin-top: 525px !important;
     margin-left: -200px !important;
 	}
 	.room_swim_but{
@@ -115,6 +143,16 @@
 		margin-top: 440px;
     margin-left: -170px;*/
     margin-top: 525px !important;
+		margin-left: -200px !important;
+	}
+	.sub_nav_adm{
+		/*
+		margin-top: 505px;
+		margin-left: -195px;
+		
+		margin-top: 440px;
+    margin-left: -170px;*/
+    margin-top: 595px !important;
 		margin-left: -200px !important;
 	}
 	#income{

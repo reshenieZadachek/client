@@ -9,9 +9,11 @@ import { useContext, useEffect, useState } from 'react';
 import { Context } from './index';
 import { check } from './http/userAPI';
 import Spinner from 'react-bootstrap/Spinner';
+import TextAnimation from './components/TextAnimations';
 
 const App = observer(() => {
   const {user} = useContext(Context)
+  console.log(user.User);
   const [loading,setLoading] = useState(true)
   const style = {
     position: 'relative',
@@ -25,6 +27,17 @@ const App = observer(() => {
     justifyContent: 'center',
     alignItems: 'center',
     borderTop: '0.5px solid #2d3340',
+  }
+  const style1 = {
+    position: 'relative',
+    flexWrap: 'wrap',
+    display: 'flex',
+    flex: '1 1 auto',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+    fontSize: '30pt',
   }
   useEffect(() => {
       check().then(data => {
@@ -41,8 +54,17 @@ const App = observer(() => {
     return(
       <BrowserRouter>
         <Headers />
-        <Spinner style={style} animation="border" role="status"><span>Loading...</span></Spinner>
+        <Spinner style={style} animation="border" role="status"><TextAnimation/></Spinner>
         <Footer />
+      </BrowserRouter>
+    )
+  }
+  if (user.User.isBanned){
+    return(
+      <BrowserRouter>
+
+        <Spinner style={style1} animation="border" role="status"><span>ВЫ БЫЛИ ЗАБАНЕНЫ</span></Spinner>
+
       </BrowserRouter>
     )
   }

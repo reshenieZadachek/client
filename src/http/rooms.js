@@ -8,3 +8,8 @@ export const httpPostJoin = async (postus) =>{
     const {data} = await $authhost.post(`room/join`, postus)
     return data
 }
+
+export const httpEnd0 = async (postus) =>{
+    const {data} = await $authhost.post(`room/end`, postus)
+    return data
+}

@@ -109,7 +109,7 @@ const goReg = () => {
                     <RewCont>
                     {rewiews.rewiews.map(rewiews =>
                     <Rew>
-                      <ReviewsText key={rewiews.id} rewiews={rewiews}/>
+                      <ReviewsText key={rewiews.id} id = {rewiews.id} rewiewsPror={rewiews}/>
                     </Rew>
                     )} 
                     </RewCont>

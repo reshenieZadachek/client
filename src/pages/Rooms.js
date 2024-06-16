@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import WrapperContRoom from '../components/room/WrapperContRoom'
 import WrapperCont2 from '../components/wrapper/WrapperCont2'
 import Spinner from 'react-bootstrap/Spinner';
+import TextAnimation from '../components/TextAnimations'
 
 //import styled from 'styled-components'
 
@@ -40,7 +41,7 @@ const  Rooms = observer(() => {
   }, [user.User.price]);
     if (loading){
       return(
-        <Spinner style={style} animation="border" role="status"><span>Loading...</span></Spinner>
+        <Spinner style={style} animation="border" role="status"><TextAnimation/></Spinner>
       )
     }
   

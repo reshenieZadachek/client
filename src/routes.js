@@ -1,3 +1,4 @@
+import Admin from "./pages/Admin"
 import Auth from "./pages/Auth"
 import Game from "./pages/Game"
 import Learn from "./pages/Learn"
@@ -6,7 +7,7 @@ import Questions from "./pages/Questions"
 import Reviews from "./pages/Reviews"
 import Rooms from "./pages/Rooms"
 import Settings from "./pages/Settings"
-import { COMMON_ROUTE, GAME_ROUTE, LOGIN_ROUTE, OHTERS_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, REVIEWS_ROUTE, ROOMS_ROUTE, SECURITY_ROUTE, SETTINGS_ROUTE, QUESTIONS_ROUTE, SECONDSTAGE_ROUTE, FIRSTSTAGE_ROUTE, THIRDSTAGE_ROUTE, MARKETING_ROUTE } from "./utils/const"
+import { COMMON_ROUTE, GAME_ROUTE, LOGIN_ROUTE, OHTERS_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, REVIEWS_ROUTE, ROOMS_ROUTE, SECURITY_ROUTE, SETTINGS_ROUTE, QUESTIONS_ROUTE, SECONDSTAGE_ROUTE, FIRSTSTAGE_ROUTE, THIRDSTAGE_ROUTE, MARKETING_ROUTE, ADMIN_ROUTE } from "./utils/const"
 
 export const learnRouteFirst = [
     {
@@ -73,5 +74,12 @@ export const publicRoutes = [
     {
         path: MARKETING_ROUTE,
         Component: Learn,
+    },
+]
+
+export const adminRoutes = [
+    {
+        path: ADMIN_ROUTE,
+        Component: Admin,
     },
 ]

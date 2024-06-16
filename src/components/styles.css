@@ -1,0 +1,49 @@
+:root {
+    --depth: 50; /* Количество слоев */
+    --offset: 0.05px; /* Расстояние между слоями */
+    --text-color: #f6a617; /* Цвет текста */
+    --layer-color: rgba(246, 166, 23, 0.1); /* Цвет слоев */
+    --shadow-color: rgba(246, 166, 23, 0.2); /* Цвет тени */
+}
+/* Остальные стили */
+
+.text-container {
+    perspective: 1000px;
+    transform: translate(-50%, -50%);
+}
+
+.animated-text {
+    position: relative;
+    font-size: 5em;
+    font-weight: bold;
+    color: #f6a617;
+    transform-style: preserve-3d;
+    animation: rotate 5s infinite linear;
+
+    position: relative;
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--text-color);
+    text-shadow: 0 0 var(--shadow-color); /* Добавляем тень для создания объема */
+    text-stroke: 2px rgba(50, 50, 50, 0.7); /* темно-серый цвет с небольшой прозрачностью */
+    -webkit-text-stroke: 2px rgba(50, 50, 50, 0.7);
+    animation: rotate 5s infinite linear;
+    white-space: pre-wrap; /* Разрешаем перенос строк */
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+/* Base layer for the 3D text */
+.animated-text span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #f6a617;
+}
