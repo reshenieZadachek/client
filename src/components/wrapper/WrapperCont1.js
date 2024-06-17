@@ -91,9 +91,7 @@ const  WrapperCont1 = observer(() => {
                             <ProgressBar level={user.progress} text={'В ГРУППУ'} />
                         </ContBar>
                     }
-                    <TextWrap onClick={() =>{
-                        setEnd(1)
-                    }}>
+                    <TextWrap>
                     MoneySlide - это сайт, который  научит вас такими навыками, как Маркетинг, Процентное накопления, обучит вас финансовой грамотности и все это в игровой форме.<br/>
                     </TextWrap>
                     <br/>
@@ -134,7 +132,7 @@ const  WrapperCont1 = observer(() => {
         <SwimMes key={popup.id} text={popup.data} />
       ))}
                 
-             <EndModalContainer style={end ? disp : {}}>
+             <EndModalContainer style={end === 1 ? disp : {}}>
                 <EndModal>
                     <ModalTextCont><ModalText>За прохождение обучения вы получили</ModalText><ModalContSum><ModalSum>10000</ModalSum><BalansImg style={BGBalance}></BalansImg></ModalContSum></ModalTextCont>
                     <ModalButton onClick={end0}>Ок</ModalButton>

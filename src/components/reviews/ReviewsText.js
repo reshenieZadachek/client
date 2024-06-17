@@ -7,21 +7,27 @@ import { httpGetRewiews } from '../../http/rewiews'
 import { PROFILE_ROUTE } from '../../utils/const'
 
 
-const  ReviewsText = ({id, rewiewsPror}) => {
+const  ReviewsText = ({id, rewiew}) => {
   const {rewiews} = useContext(Context)
   
   const { user } = useContext(Context)
-  const path = process.env.REACT_APP_API_URL + rewiewsPror.avatar
-  const DelRew = async () =>{
+  const path = process.env.REACT_APP_API_URL + rewiew.avatar
+  let ws;
+  const DelRew = async () => {
     let data;
     const formData = new FormData()
-    formData.append('id', id)
+    formData.append('id', rewiew.id)
     data = await httpPostRewiewDel(formData)
+    ws = new WebSocket('ws://localhost:5000');
+    ws.onopen = function () {
+      ws.send(JSON.stringify({ text: 'Я ТУТААА' }));
+    };
     httpGetRewiews(rewiews.page, rewiews.limit).then(data => {
       rewiews.setRewiews(data.rows)
       rewiews.setTotalCount(data.count)
     })
   }
+  
   const stylelist = {
     width:50,
     height:50,
@@ -36,18 +42,18 @@ const  ReviewsText = ({id, rewiewsPror}) => {
     <Cont>
       
       <RewImg>
-        <Link style={{color:'white'}} to={PROFILE_ROUTE+'/'+rewiewsPror.usId}>
+        <Link style={{color:'white'}} to={PROFILE_ROUTE+'/'+rewiew.usId}>
           <div style={stylelist}></div>
         </Link>
       </RewImg>
       <NameText>
-        <Link style={{color:'white'}} to={PROFILE_ROUTE+'/'+rewiewsPror.usId}>
+        <Link style={{color:'white'}} to={PROFILE_ROUTE+'/'+rewiew.usId}>
           <span> 
-            {rewiewsPror.login}
+            {rewiew.login}
           </span>
         </Link>
         <Text>
-          {rewiewsPror.text}
+          {rewiew.text}
         </Text>
       </NameText>
       {user.User.role === 'ADMIN'

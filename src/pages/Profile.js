@@ -41,7 +41,7 @@ const  Profile = observer(() => {
                         Пополнил
                         </label>
                         <TextBl>
-                        {allPopoln}
+                        {allPopoln ? allPopoln :'Операций не производилось'}
                         </TextBl>
                     </WRBlock>
                     <WRBlock>
@@ -49,7 +49,7 @@ const  Profile = observer(() => {
                           Обменял
                         </label>
                         <TextBl>
-                        {allVivod}
+                        {allVivod ? allVivod :'Операций не производилось'}
                         </TextBl>
                     </WRBlock>
                   </WorkRow>
