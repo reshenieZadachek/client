@@ -1,0 +1,2 @@
+.modal{left:50%;position:fixed;top:50%;transform:translate(-50%,-50%);visibility:hidden}.show{opacity:1;visibility:visible}.hide,.show{transition:opacity .5s ease-in-out,visibility .5s ease-in-out}.hide{opacity:0;visibility:hidden}
+/*# sourceMappingURL=602.77f77502.chunk.css.map*/
