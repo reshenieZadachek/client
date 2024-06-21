@@ -5,15 +5,22 @@ import AppRouter from './components/AppRouter';
 import Headers from './components/HEADER/Header';
 import Footer from './components/FOOTER/Footer';
 import { observer } from 'mobx-react-lite';
-import { useContext, useEffect, useState } from 'react';
+import { memo, useContext, useEffect, useState } from 'react';
 import { Context } from './index';
 import { check } from './http/userAPI';
 import Spinner from 'react-bootstrap/Spinner';
 import TextAnimation from './components/TextAnimations';
-
+const Layout = ({children}) =>{
+  return(
+    <>
+    <Headers />
+      {children}
+      <Footer />
+    </>
+  )
+}
 const App = observer(() => {
   const {user} = useContext(Context)
-  console.log(user.User);
   const [loading,setLoading] = useState(true)
   const style = {
     position: 'relative',
@@ -69,10 +76,11 @@ const App = observer(() => {
     )
   }
   return (
+
     <BrowserRouter>
-      <Headers />
+    <Layout>
       <AppRouter />
-      <Footer />
+    </Layout>
     </BrowserRouter>
   );
 });

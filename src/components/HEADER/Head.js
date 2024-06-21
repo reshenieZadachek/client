@@ -76,7 +76,7 @@ const Head = observer(() => {
             });
         }
     const BGBalance ={
-        backgroundImage: `url(${process.env.REACT_APP_API_URL}balance.svg)`,
+        backgroundImage: `url(${process.env.REACT_APP_S3_IMG_URL}balance.svg)`,
     }
 
     const [ popolnil, setPopolnil ] = useState([])
@@ -97,7 +97,6 @@ const Head = observer(() => {
         const data = await GetHistory(user.User.id)
         setPopolnil(data.popoln)
         setVivel(data.vivod)
-        console.log(data);
     }
     const formatDate = (isoString) => {
         const date = new Date(isoString);

@@ -11,7 +11,7 @@ const  ReviewsText = ({id, rewiew}) => {
   const {rewiews} = useContext(Context)
   
   const { user } = useContext(Context)
-  const path = process.env.REACT_APP_API_URL + rewiew.avatar
+  const path = process.env.REACT_APP_S3_IMG_URL + rewiew.avatar
   let ws;
   const DelRew = async () => {
     let data;
@@ -43,7 +43,7 @@ const  ReviewsText = ({id, rewiew}) => {
       
       <RewImg>
         <Link style={{color:'white'}} to={PROFILE_ROUTE+'/'+rewiew.usId}>
-          <div style={stylelist}></div>
+          <div style={stylelist} alt="пользователь монислайд"></div>
         </Link>
       </RewImg>
       <NameText>

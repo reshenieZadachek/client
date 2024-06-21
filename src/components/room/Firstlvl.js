@@ -10,8 +10,8 @@ const  Firstlvl = observer((props) => {
         <Row>
             {extendedArray.map((item, index) => (
                 <div key={index} className=''>
-                    {item.avatar && (item.id && (item.id == user.User.id && <div className='testAvatar1 sircle_start_level' style={{backgroundImage: `url(${process.env.REACT_APP_API_URL + item.avatar})`, border: '1px solid red'}}></div>))}
-                    {item.avatar && (item.id && (item.id != user.User.id && <div className='testAvatar1 sircle_start_level' style={{backgroundImage: `url(${process.env.REACT_APP_API_URL + item.avatar})`}}></div>))}
+                    {item.avatar && (item.id && (item.id == user.User.id && <div className='testAvatar1 sircle_start_level' style={{backgroundImage: `url(${process.env.REACT_APP_S3_IMG_URL + item.avatar})`, border: '1px solid red'}}></div>))}
+                    {item.avatar && (item.id && (item.id != user.User.id && <div className='testAvatar1 sircle_start_level' style={{backgroundImage: `url(${process.env.REACT_APP_S3_IMG_URL + item.avatar})`}}></div>))}
                     {!item.avatar && <div className='testAvatar1 sircle_start_level'></div>}
                 </div>
             ))} 

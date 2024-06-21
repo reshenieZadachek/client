@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 
 const  ProfInfo = observer(({profInfost}) => {
-  let path = process.env.REACT_APP_API_URL + profInfost.avatar
+  let path = process.env.REACT_APP_S3_IMG_URL + profInfost.avatar
   let login = profInfost.login
   const img = {
     backgroundImage: `url(${path})`,

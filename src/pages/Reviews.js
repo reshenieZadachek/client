@@ -63,7 +63,7 @@ const  Reviews = observer(() => {
         rewiews.setTotalCount(data.count)
       })
     };
-    if(data === 'Вы уже добавили отзыв'){
+    if(data === 'Вы уже добавили отзыв' || data === 'Отзыв больше 200 символов' || data === 'Отзыв меньше 10 символов'){
       mes = data
       const newPopup = { id: Date.now(), mes }
         setPopups(prevPopups => [...prevPopups, newPopup]);

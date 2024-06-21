@@ -16,7 +16,7 @@ import SwimMes from '../SwimMes';
     const isSecurity = location.pathname === SECURITY_ROUTE
     const isOthers = location.pathname === OHTERS_ROUTE
 
-    const path = process.env.REACT_APP_API_URL + user.User.avatar
+    const path = process.env.REACT_APP_S3_IMG_URL + user.User.avatar
     const [image, setImage] = useState(path)
     const [checkImage, setCheckImage] = useState(false)
     const [file,setFile] = useState('')

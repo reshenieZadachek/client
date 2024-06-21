@@ -8,14 +8,14 @@ import { PROFILE_ROUTE } from '../../utils/const';
 const  SubEl = observer((props) => {
     
     const {user} = useContext(Context)
-    const path = process.env.REACT_APP_API_URL + user.User.avatar
+    const path = process.env.REACT_APP_S3_IMG_URL + user.User.avatar
   return (
     <Link to={props.go} onClick={props.func} className='SubHeadEl'>
         <SubEll>
             {
                 props.usProf
                 ?
-                <ProfImg style = {{backgroundImage: `url(${path})`,borderRadius: '3px'}}></ProfImg>
+                <ProfImg style = {{backgroundImage: `url(${path})`,borderRadius: '3px'}}  alt={`монислайд мой профиль`}></ProfImg>
                 :
                 props.icon
             }
