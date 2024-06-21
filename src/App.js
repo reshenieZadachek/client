@@ -1,15 +1,17 @@
 import './App.css';
 import './mobile.css';
 import {BrowserRouter} from "react-router-dom";
-import AppRouter from './components/AppRouter';
-import Headers from './components/HEADER/Header';
-import Footer from './components/FOOTER/Footer';
 import { observer } from 'mobx-react-lite';
-import { memo, useContext, useEffect, useState } from 'react';
+import { lazy, Suspense, useContext, useEffect, useState } from 'react';
 import { Context } from './index';
 import { check } from './http/userAPI';
-import Spinner from 'react-bootstrap/Spinner';
 import TextAnimation from './components/TextAnimations';
+
+const Footer =  lazy(() => import('./components/FOOTER/Footer'));
+const Headers =  lazy(() => import('./components/HEADER/Header'));
+const AppRouter =  lazy(() => import('./components/AppRouter'));
+const Spinner =  lazy(() => import('react-bootstrap/Spinner'));
+
 const Layout = ({children}) =>{
   return(
     <>
@@ -59,29 +61,34 @@ const App = observer(() => {
   }, [])
   if (loading){
     return(
-      <BrowserRouter>
-        <Headers />
-        <Spinner style={style} animation="border" role="status"><TextAnimation/></Spinner>
-        <Footer />
-      </BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
+        <BrowserRouter>
+          <Headers />
+          <Spinner style={style} animation="border" role="status"><TextAnimation/></Spinner>
+          <Footer />
+        </BrowserRouter>
+      </Suspense>
     )
   }
   if (user.User.isBanned){
     return(
-      <BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
+          <BrowserRouter>
 
-        <Spinner style={style1} animation="border" role="status"><span>ВЫ БЫЛИ ЗАБАНЕНЫ</span></Spinner>
+            <Spinner style={style1} animation="border" role="status"><span>ВЫ БЫЛИ ЗАБАНЕНЫ</span></Spinner>
 
-      </BrowserRouter>
+          </BrowserRouter>
+      </Suspense>
     )
   }
   return (
-
-    <BrowserRouter>
-    <Layout>
-      <AppRouter />
-    </Layout>
-    </BrowserRouter>
+    <Suspense fallback={<div>Loading...</div>}>
+      <BrowserRouter>
+        <Layout>
+          <AppRouter />
+        </Layout>
+      </BrowserRouter>
+    </Suspense>
   );
 });
 
