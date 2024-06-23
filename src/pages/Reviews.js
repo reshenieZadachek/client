@@ -14,7 +14,7 @@ const  Reviews = observer(() => {
   const [popups, setPopups] = useState([]);
   let ws;
   useEffect(() => {
-    ws = new WebSocket('ws://localhost:5000');
+    ws = new WebSocket('wss://moneyslide.ru/api:5000');
 
     ws.onopen = function () {
       
@@ -53,7 +53,7 @@ const  Reviews = observer(() => {
     formData.append('page', rewiews.page)
     data = await httpPostRewiew(formData)
     setTextForm('')
-    ws = new WebSocket('ws://localhost:5000');
+    ws = new WebSocket('wss://moneyslide.ru/api:5000');
     ws.onopen = function () {
       ws.send(JSON.stringify({ text: 'Я ТУТААА' }));
     };
@@ -181,7 +181,6 @@ const RewCont = styled.div`
   max-width: 1200px;
 `
 const SendRew = styled.div`
-    padding: 5px 10px 10px 10px;
     display: flex;
     position: relative;
     width:100%;

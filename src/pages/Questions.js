@@ -22,25 +22,6 @@ const Questions = () => {
     }
   };
 
-  const styleLink = {
-    flexDirection: 'row',
-    width: '80%',
-    position: 'relative',
-    margin: '5px 0',
-    display: 'flex',
-    minHeight: '50px',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    flex: '1 1 auto',
-    borderRadius: '10px',
-    backgroundColor: '#f6a617',
-    cursor: 'pointer',
-    transitionDuration: '.5s',
-    fontSize: '11pt',
-    color: 'white',
-  };
-
   return (
     <Wrapperr>
       <ContentBody>

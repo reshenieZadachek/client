@@ -1,4 +1,4 @@
-import { $authhost, $host } from "./index";
+import { $authhost } from "./index";
 
 export const httpGetBanUser = async (id) =>{
     const {data} = await $authhost.get(`admin/getbanpeople/${id}`)

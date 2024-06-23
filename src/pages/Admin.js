@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { LiaGofore } from 'react-icons/lia';
 import styled from 'styled-components';
 import SwimMes from '../components/SwimMes';
 import { httpGetBalUser, httpGetBanUser, httpPostUserBal, httpPostUserBan } from '../http/admin';

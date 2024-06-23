@@ -8,7 +8,6 @@ import { LiaTelegramPlane } from "react-icons/lia";
 import { BiLogoVk } from "react-icons/bi";
 import { LiaWhatsapp } from "react-icons/lia";
 import { PiUserLight } from "react-icons/pi";
-import $ from 'jquery';
 import SubEl from './SubEl'
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoExitOutline } from "react-icons/io5";
@@ -47,34 +46,21 @@ const Head = observer(() => {
         user.setIsVisible(false)
         check()
     }
-        if (user.isVisible) {
-            $(".triangle").css({
-                "display":"flex",
-            });
-            $(".sub_nav").css({
-                "display":"flex",
-            });
-            $(".triangle_adm").css({
-                "display":"flex",
-            });
-            $(".sub_nav_adm").css({
-                "display":"flex",
-            });
-        }
-        else{
-            $(".triangle").css({
-                "display":"none",
-            });
-            $(".sub_nav").css({
-                "display":"none",
-            });
-            $(".triangle_adm").css({
-                "display":"none",
-            });
-            $(".sub_nav_adm").css({
-                "display":"none",
-            });
-        }
+    if (user.isVisible) {
+        ['triangle', 'sub_nav', 'triangle_adm', 'sub_nav_adm'].forEach(className => {
+            const elements = document.getElementsByClassName(className);
+            for (let element of elements) {
+                element.style.display = 'flex';
+            }
+        });
+    } else {
+        ['triangle', 'sub_nav', 'triangle_adm', 'sub_nav_adm'].forEach(className => {
+            const elements = document.getElementsByClassName(className);
+            for (let element of elements) {
+                element.style.display = 'none';
+            }
+        });
+    }
     const BGBalance ={
         backgroundImage: `url(${process.env.REACT_APP_S3_IMG_URL}balance.svg)`,
     }

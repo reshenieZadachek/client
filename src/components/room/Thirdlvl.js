@@ -27,8 +27,5 @@ justify-content: space-around;
 align-items: center;
 padding: 10px;
 `
-const Сell = styled.div`
-
-`
 
 export default Thirdlvl; 

@@ -1,0 +1,40 @@
+  GNU nano 7.2                                                                                                                       robots.txt                                                                                                                                User-agent: *
+Allow: /
+Allow: /learn/marketing
+Allow: /reviews
+
+# Запрещаем индексацию административных и служебных разделов
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+
+# Запрещаем индексацию URL с параметрами запросов
+Disallow: /*?
+
+# Разрешаем индексацию CSS и JavaScript файлов
+Allow: /*.js$
+Allow: /*.css$
+
+# Запрещаем индексацию дублей страниц с '/index.php' или '/index.html'
+Disallow: */index.php
+Disallow: */index.html
+
+# Запрещаем индексацию страниц с ошибками
+Disallow: /404
+Disallow: /error
+
+# Специфические правила для Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Специфические правила для Yandex
+User-agent: Yandex
+Allow: /
+Clean-param: utm_source&utm_medium&utm_campaign
+
+# Указываем расположение карты сайта
+Sitemap: https://moneyslide.ru/sitemap.xml
+
+# Устанавливаем задержку между запросами
+Crawl-delay: 5

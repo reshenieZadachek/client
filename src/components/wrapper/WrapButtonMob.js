@@ -1,11 +1,7 @@
 import { observer } from 'mobx-react-lite'
-import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Context } from '../..'
-import { httpPostJoin } from '../../http/rooms'
-import { ROOMS_ROUTE } from '../../utils/const'
-import SwimMes from '../SwimMes'
 
 const WrapButtonsMob = observer((props) => {
     const { user } = useContext(Context)

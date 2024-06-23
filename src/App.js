@@ -61,7 +61,7 @@ const App = observer(() => {
   }, [])
   if (loading){
     return(
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<TextAnimation/>}>
         <BrowserRouter>
           <Headers />
           <Spinner style={style} animation="border" role="status"><TextAnimation/></Spinner>
@@ -72,7 +72,7 @@ const App = observer(() => {
   }
   if (user.User.isBanned){
     return(
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<TextAnimation/>}>
           <BrowserRouter>
 
             <Spinner style={style1} animation="border" role="status"><span>ВЫ БЫЛИ ЗАБАНЕНЫ</span></Spinner>
@@ -82,7 +82,7 @@ const App = observer(() => {
     )
   }
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<TextAnimation/>}>
       <BrowserRouter>
         <Layout>
           <AppRouter />

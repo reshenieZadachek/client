@@ -1,10 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { Context } from '../..'
 
 export default function RoomButtons(props) {
-    const { user } = useContext(Context)
     const styleLink = {
         backgroundColor: '#f6a617'
     }

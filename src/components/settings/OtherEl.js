@@ -1,10 +1,7 @@
 import { observer } from 'mobx-react-lite'
-import { useContext } from 'react'
 import styled from 'styled-components'
-import { Context } from '../..'
 
  const OtherEl = observer((props) => {
-    const { user } = useContext(Context)
   return (
         <Wrap>
             <Cont>

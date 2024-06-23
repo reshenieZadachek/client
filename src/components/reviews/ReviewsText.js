@@ -18,7 +18,7 @@ const  ReviewsText = ({id, rewiew}) => {
     const formData = new FormData()
     formData.append('id', rewiew.id)
     data = await httpPostRewiewDel(formData)
-    ws = new WebSocket('ws://localhost:5000');
+    ws = new WebSocket('wss://moneyslide.ru/api:5000');
     ws.onopen = function () {
       ws.send(JSON.stringify({ text: 'Я ТУТААА' }));
     };

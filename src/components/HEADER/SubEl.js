@@ -3,7 +3,6 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { Context } from '../../';
-import { PROFILE_ROUTE } from '../../utils/const';
 
 const  SubEl = observer((props) => {
     
